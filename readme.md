@@ -1,5 +1,5 @@
  # Express Auth Boilerplate
-
+<!-- 
  * create a node app
  * .gitignore (include node_modules)
  * install and set up express (npm i express)
@@ -20,8 +20,45 @@
  * require model (```const db = require('...models')```) in auth controllers
  * set up sign up post route in auth controllers
  * add authentication object in user.js
- * update sign up post route 
+ * update sign up post route  -->
 
+## How to Set Up:
+1. Fork & Clone
+2. Install dependencies
+```
+npm i
+```
+3. Create a `config.json` with the following code:
+```json
+{
+  "development": {
+    "database": "<insert db name here>_dev",
+    "host": "127.0.0.1",
+    "dialect": "postgres"
+  },
+  "test": {
+    "database": "<insert db name here>_test",
+    "host": "127.0.0.1",
+    "dialect": "postgres"
+  },
+  "production": {
+    "database": "<insert db name here>_production",
+    "host": "127.0.0.1",
+    "dialect": "postgres"
+  }
+}
+```
+**Note:** If your database requires a username and password, you'll need to include these fields as well.
 
+4. Create a database
+```
+sequelize db:create <insert db name here>
+```
 
-# adding sequelize validations
+5. Migrate the `user` model to your database
+```
+sequelize db:migrate
+```
+6. Add a `SESSION_SECRET` and `PORT` environment variables in a `.env` file (can be any string)
+
+7. Run `nodemon`

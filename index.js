@@ -1,3 +1,4 @@
+require('dotenv').config()
 const express = require('express')
 const app = express()
 const ejsLayouts = require('express-ejs-layouts')
@@ -15,7 +16,7 @@ app.use(express.urlencoded({extended: false}))
 
 //set up session middleware
 app.use(session({
-    secret: 'keyboard cat',
+    secret: process.env.SESSION_SECRET,
     resave: false,
     saveUninitialized: true
 }))
@@ -48,6 +49,6 @@ app.get('/profile', isLoggedIn, (req, res) =>{
     res.render('profile')
 })
 
-app.listen(3000, ()=>{
+app.listen(process.env.PORT, ()=>{
     console.log("Keep your heart 3 stacks")
 })
