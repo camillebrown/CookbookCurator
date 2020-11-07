@@ -4,6 +4,7 @@ const ejsLayouts = require('express-ejs-layouts')
 const session = require('express-session')
 const passport = require('./config/ppConfig.js')
 const flash = require ('connect-flash') // MUST GO AFTER THE SESSION MIDDLEWARE
+const isLoggedIn = require('./middleware/isLoggedIn')
 
 // set ejs and ejs layouts
 app.set('view engine', 'ejs')
@@ -42,7 +43,8 @@ app.get('/', (req, res)=>{
     res.render('home')
 })
 
-app.get('/profile', (req, res) =>{
+app.get('/profile', isLoggedIn, (req, res) =>{
+    // adding isLoggedIn ^ is an optional middleware parameter that tells the route that it's only an accessible route if that middleware parameter is met
     res.render('profile')
 })
 

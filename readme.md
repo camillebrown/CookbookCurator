@@ -17,6 +17,11 @@
  * create a database (sequelize db:create [NAME OF DATABASE])
  * create a model within the database (sequelize model:create --name --attributes)
  * migrate the new model (sequelize db:migrate)
+ * require model (```const db = require('...models')```) in auth controllers
+ * set up sign up post route in auth controllers
+ * add authentication object in user.js
+ * update sign up post route 
+
 
 
 # adding sequelize validations
