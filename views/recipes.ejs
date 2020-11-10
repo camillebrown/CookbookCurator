@@ -1,0 +1,15 @@
+<div class='grid3'> 
+    <% recipeArray.forEach(recipe=>{ %>
+        <div class='grid-item'>
+            <img src = "<%=recipe.image%>">
+            <p><%=recipe.title%></p>
+            <form method="POST" action="/recipes/my-recipes" id="form">
+                <input hidden type="text" name="name" value="<%=recipe.title%>">
+                <input hidden type="text" name="img_url" value="<%=recipe.image%>">
+                <input hidden type="text" name="recipe_id" value="<%=recipe.id%>">
+                <button class="btn btn-primary" id="btn" type="submit">Favorite this Recipe</button>
+              </form>
+        </div>
+    <% }) %>
+</div>
+    

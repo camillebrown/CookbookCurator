@@ -1,1 +1,12 @@
-<h2>Express Auth Boilerplate Home Page</h2>
+<div class="parent"> 
+    <% for (let i=0;i<homeArray.length; i++){ %>
+        <div class="img<%=i+1%>">
+            <img src = "<%=homeArray[i].image%>">
+        </div>
+    <% } %>
+    <div class="about"> 
+        <h1>about</h1>
+        <p>about text</p>
+    </div> 
+</div>
+    

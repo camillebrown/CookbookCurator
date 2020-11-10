@@ -4,8 +4,10 @@ const app = express()
 const ejsLayouts = require('express-ejs-layouts')
 const session = require('express-session')
 const passport = require('./config/ppConfig.js')
-const flash = require ('connect-flash') // MUST GO AFTER THE SESSION MIDDLEWARE
+const flash = require('connect-flash') // MUST GO AFTER THE SESSION MIDDLEWARE
 const isLoggedIn = require('./middleware/isLoggedIn')
+app.use(express.static('public'))
+const axios = require("axios").default;
 
 // set ejs and ejs layouts
 app.set('view engine', 'ejs')
@@ -38,10 +40,31 @@ app.use((req, res, next) => {
 })
 
 // controllers middleware
-app.use('/auth', require('./controllers/auth.js'))
+app.use('/auth', require('./controllers/auth.js'));
+app.use('/recipes', require('./controllers/recipes.js'))
 
 app.get('/', (req, res)=>{
-    res.render('home')
+    axios.get(`https://api.spoonacular.com/recipes/random?apiKey=${process.env.API_KEY}&number=3`)
+    .then(response=> {
+        let homeArray = response.data.recipes
+        res.render('home', {homeArray: homeArray})
+        console.log(req.session.passport.user)
+    }).catch(function (error) {
+        console.error(error);
+    });
+    
+})
+
+app.get('/about', (req, res)=>{
+    res.render('about')
+})
+
+app.get('/my-recipes', isLoggedIn, (req, res)=>{
+    res.render('my-recipes')
+})
+
+app.get('/categories', isLoggedIn, (req, res)=>{
+    res.render('categories')
 })
 
 app.get('/profile', isLoggedIn, (req, res) =>{
@@ -50,5 +73,5 @@ app.get('/profile', isLoggedIn, (req, res) =>{
 })
 
 app.listen(process.env.PORT, ()=>{
-    console.log("Keep your heart 3 stacks")
+    console.log(`You're now listening to the smooth sounds of port ${process.env.PORT}`)
 })
