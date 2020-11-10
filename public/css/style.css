@@ -10,6 +10,7 @@
 }
 .search { 
     grid-area: 1 / 1 / 2 / 7; 
+    text-align: right;
 } 
 .heading { 
     grid-area: 2 / 1 / 3 / 7; 

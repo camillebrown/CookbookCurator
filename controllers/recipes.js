@@ -5,7 +5,8 @@ const db = require('../models');
 router.use(express.urlencoded({extended: false}))
 const isLoggedIn = require('../middleware/isLoggedIn')
 const session = require('express-session')
-const passport = require('../config/ppConfig.js')
+const passport = require('../config/ppConfig.js');
+const user = require('../models/user');
 
 // GET Method
 // Get all the search recipes
@@ -22,43 +23,41 @@ router.get('/', isLoggedIn, (req, res)=>{
 })
 
 // GET Method
-// Get all the fav movies
-router.get('/my-recipes', (req, res)=>{
+// Get all the fav recipes
+router.get('/my-recipes', isLoggedIn, (req, res)=>{
     db.user.findOne({
-        where: {id: req.session.passport.user}
+        where: {id: req.session.passport.user},
+        include: [db.recipe]
     }).then(user=>{
-        user.getRecipes()
-        .then(recipes=>{
-            //do something with recipes
-            recipes.forEach(recipe=>{
-                // console.log(`${user.name}'s recipes:`)
-                // console.log(recipe.title)
-                res.render('my-recipes', {recipes: recipes})
-            })
-          })
-      })
-})
+        user.recipes.forEach(function(recipe) {
+            console.log(`${user} has recipes ${recipe.name}`)
+        })
+        res.render('my-recipes', {recipes: user.recipes})
+    }).catch(function (error) {
+        console.error(error);
+    });
+})  
 
 // POST /my-recipes - add favorited recipe to the database
 router.post('/my-recipes', function(req, res) {
     //Get form data and add a new record to DB
     console.log('Form Data: ', req.body)
     db.recipe.findOrCreate({
-        where:{
+        where: {
             name: req.body.name,
             img_url: req.body.img_url,
-            recipe_id: req.body.recipe_id
+            recipe_id: req.body.recipe_id,
         }
     }).then(([recipe, created])=>{
-        console.log(`${recipe} was created? ${created}`)
+        console.log(`${recipe} was created????????? =  ${created}`)
         db.user.findOne({
             where: {id: req.session.passport.user}
         }).then(user=>{
             user.addRecipe(recipe)
-            console.log('User ' + user.name + ' favorited ' + recipe.title);
+            console.log('User ' + user.name + ' favorited ' + recipe.name);
         })
     })
-    res.redirect('/recipes/my-recipes')
+    res.redirect('/recipes/my-recipes')   
 })    
 
 module.exports = router

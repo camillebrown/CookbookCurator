@@ -1,6 +1,10 @@
 <h1> Favorites:</h1>
-<ul>
-    <% recipes.forEach(recipe=> { %>
-        <li><%= recipe.title %></li>
+
+<div class='grid3'> 
+    <% recipes.forEach(recipe=>{ %>
+        <div class='grid-item'>
+            <img src = "<%=recipe.img_url%>">
+            <p><%=recipe.name%></p>
+        </div>
     <% }) %>
-</ul>   
+</div>

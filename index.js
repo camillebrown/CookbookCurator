@@ -8,6 +8,7 @@ const flash = require('connect-flash') // MUST GO AFTER THE SESSION MIDDLEWARE
 const isLoggedIn = require('./middleware/isLoggedIn')
 app.use(express.static('public'))
 const axios = require("axios").default;
+const db = require('./models');
 
 // set ejs and ejs layouts
 app.set('view engine', 'ejs')
@@ -57,10 +58,6 @@ app.get('/', (req, res)=>{
 
 app.get('/about', (req, res)=>{
     res.render('about')
-})
-
-app.get('/my-recipes', isLoggedIn, (req, res)=>{
-    res.render('my-recipes')
 })
 
 app.get('/categories', isLoggedIn, (req, res)=>{

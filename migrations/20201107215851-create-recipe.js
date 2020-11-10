@@ -11,14 +11,11 @@ module.exports = {
       name: {
         type: Sequelize.STRING
       },
-      ingredients: {
-        type: Sequelize.STRING
-      },
-      instructions: {
-        type: Sequelize.STRING
-      },
       img_url: {
         type: Sequelize.STRING
+      },
+      recipe_id: {
+        type: Sequelize.INTEGER
       },
       createdAt: {
         allowNull: false,
