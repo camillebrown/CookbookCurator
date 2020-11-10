@@ -10,16 +10,16 @@
     <header>
         <nav>
             <ul>
-                <li><a href="/">Home</a></li>
-                <li><a href="/about">About</a></li>
-                <li><a href="/recipes/my-recipes">My Recipes</a></li>
-                <li><a href="/recipes/categories">Categories</a></li>
+                <li><a href="/">HOME</a></li>
+                <li><a href="/about">ABOUT</a></li>
+                <li><a href="/recipes/my-recipes">MY RECIPES</a></li>
+                <li><a href="/recipes/categories">CATEGORIES</a></li>
                 <% if (!currentUser) { %>
-                    <li><a href="/auth/signup">Sign Up</a></li>
-                    <li><a href="/auth/login">Login</a></li>
+                    <li><a href="/auth/signup">SIGN UP</a></li>
+                    <li><a href="/auth/login">LOGIN</a></li>
                 <% } else { %>
-                    <li><a href="/auth/logout">Log Out</a></li>
-                    <li><a href="/profile">Profile</a></li>
+                    <li><a href="/auth/logout">LOG OUT</a></li>
+                    <li><a href="/profile">PROFILE</a></li>
                 <% } %>
             </ul>
         </nav>
@@ -32,7 +32,8 @@
             </form>
         </div> 
         <div class="heading">
-            <h1>App Title</h1> 
+            <h1>App Title</h1>
+        </div>     
     <%- include('partials/alerts.ejs') %>
     <%- body %>
 </body>

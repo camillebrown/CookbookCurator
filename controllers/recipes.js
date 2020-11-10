@@ -22,7 +22,7 @@ router.get('/', isLoggedIn, (req, res)=>{
     // console.log(req.session.passport.user)
 })
 
-// GET Method
+// GET Method /my-recipes
 // Get all the fav recipes
 router.get('/my-recipes', isLoggedIn, (req, res)=>{
     db.user.findOne({
@@ -38,8 +38,9 @@ router.get('/my-recipes', isLoggedIn, (req, res)=>{
     });
 })  
 
-// POST /my-recipes - add favorited recipe to the database
-router.post('/my-recipes', function(req, res) {
+// POST /my-recipes
+// Add favorited recipe to the database and post to my-recipes page
+router.post('/my-recipes', isLoggedIn, (req, res) => {
     //Get form data and add a new record to DB
     console.log('Form Data: ', req.body)
     db.recipe.findOrCreate({
@@ -59,5 +60,11 @@ router.post('/my-recipes', function(req, res) {
     })
     res.redirect('/recipes/my-recipes')   
 })    
+
+// GET /categories
+// get recipes based on category
+router.get('/categories', isLoggedIn, (req, res)=>{
+    res.render('categories')
+})
 
 module.exports = router

@@ -45,14 +45,14 @@ app.use('/auth', require('./controllers/auth.js'));
 app.use('/recipes', require('./controllers/recipes.js'))
 
 app.get('/', (req, res)=>{
-    axios.get(`https://api.spoonacular.com/recipes/random?apiKey=${process.env.API_KEY}&number=3&type=main%20course`)
+    axios.get(`https://api.spoonacular.com/recipes/random?apiKey=${process.env.API_KEY}&number=6&type=main%20course`)
     .then(response=> {
         let homeArray = response.data.recipes
         res.render('home', {homeArray: homeArray})
         homeArray.forEach(item=>{
             console.log(item.dishTypes)
         })
-        console.log(req.session.passport.user)
+        // console.log(req.session.passport.user)
     }).catch(function (error) {
         console.error(error);
     });
@@ -61,10 +61,6 @@ app.get('/', (req, res)=>{
 
 app.get('/about', (req, res)=>{
     res.render('about')
-})
-
-app.get('/categories', isLoggedIn, (req, res)=>{
-    res.render('categories')
 })
 
 app.get('/profile', isLoggedIn, (req, res) =>{
