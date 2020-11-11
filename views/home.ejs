@@ -3,12 +3,20 @@
         <div class="home-grid-item">
             <a href="/recipes/<%= homeArray[i].id %>"><img class="home-img" src = "<%=homeArray[i].image%>"></a>
             <a class="home-grid-text" href="/recipes/<%= homeArray[i].id %>"><%=homeArray[i].title%></a>
-        </div>
+            <form method="POST" class="addTo-btn" action="/recipes/my-recipes">
+                <input hidden type="text" name="name" value="<%=homeArray[i].title%>">
+                <input hidden type="text" name="img_url" value="<%=homeArray[i].image%>">
+                <input hidden type="text" name="recipe_id" value="<%=homeArray[i].id%>">
+                <button class="btn btn-primary" id="btn" type="submit">Add to My Cookbook</button>
+              </form>
+              <a href="/recipes/<%= homeArray[i].id %>" class="btn btn-primary" id="more-btn" type="submit">CHECK IT OUT!</a>
+            </div>
     <% } %>
 </div>
 
+<hr style="width: 80%; margin-top: 50px;">
 <div class="about"> 
-    <h1>about</h1>
-    <p>about text</p>
+    <a id="about-section"><h1>ABOUT COOKBOOK CURATOR</h1></a>
+    <p>The Cookbook Curator allows users to find hundreds of thousands of recipes and add them to your own personalized cookbook! Learn what ingredients you need and how to make each recipe from scratch! Get started by searching for recipes with your favorite ingredients, adding them to your cookbook, and get to cookin'!</p>
 </div> 
     

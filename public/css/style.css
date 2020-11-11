@@ -1,69 +1,140 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800&family=Roboto+Slab:wght@200;300;400&display=swap');
-*{
+@import url('https://fonts.googleapis.com/css2?family=Rock+Salt&display=swap');
+
+
+body{
+    margin: 0;
     font-family: 'Poppins', sans-serif;
 }
 
-.body{
+.heading { 
+    grid-area: 2 / 1 / 3 / 7; 
     text-align: center;
+    margin-top: 70px;
+    width: 100%;
+} 
+#app-title{
+    font-family: 'Rock Salt', cursive;
+    font-size: 50px;
+    text-decoration: underline;
+    text-align: center;
+    margin-bottom: 0px;
+    color: black;
+}
+
+nav{
+    background: #8bc34a;
+    margin-top:0;
+}
+
+.nav-ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+}
+  
+.nav-li {
+    float: left;
+}
+
+.nav-li-2 {
+    float: right;
+}
+
+li a:hover {
+    color: green;
+}
+
+li a{
+    display: block;
+    color: white;
+    padding: 10px;
+    text-decoration: none;
+    font-weight: bolder;
 }
 
 .search { 
     grid-area: 1 / 1 / 2 / 7; 
     text-align: right;
+    padding-top: 10px;
+    padding-right: 15px;
+    position: relative;
+    float: right;
+    font-family: 'Poppins', sans-serif;
 } 
-.heading { 
-    grid-area: 2 / 1 / 3 / 7; 
-    text-align: center;
-} 
+
+.input-icons i { 
+    position: absolute; 
+    margin-top: 1px;
+}
+
+.input-field{ 
+    margin-top: 10px;
+    border-radius: 20px;
+    border: 1px solid grey;
+    height: 30px;
+    width: 250px;
+    padding-left:25px;
+    font-size: 10px;
+    font-family: 'Poppins', sans-serif;
+}
 
 .about { 
     /* grid-area: 5 / 1 / 6 / 7;  */
     text-align:center;
     font-family: 'Poppins', sans-serif;
+    width: 80%;
+    font-weight: 200;
+    height: 300px;
+    margin-top: 50px;
+    margin: auto;
 } 
 
-.grid3{
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: flex-start;
-    align-content: stretch;
-    align-items: center;
-    margin: auto;
-    margin-top: 50px;
-    width:80%;
-}
+.about h1{ 
+    color: #f4b804;
+    font-size: 40px
+}    
 
 .grid-item{
     order: 0;
     flex: 1 0 21%;
     align-self: auto;
     margin: 10px;
-}
-
-.home-grid{
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: flex-start;
-    align-content: stretch;
-    align-items: flex-start;
-    margin: auto;
-    margin-top: 50px;
-    width: 80%;
-}
-
-.home-grid-item{
-    order: 0;
-    flex: 1 0 28%;
-    align-self: auto;
-    margin: 30px;
     width: 556px;
     height: 370px;
     position: relative;
     text-align: center;
     background: black;
 }
+
+.home-grid, .grid3{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    align-content: center;
+    align-items: flex-start;
+    margin: auto;
+    margin-top: 10px;
+    width: 80%;
+}
+
+.home-grid-item{
+    order: 0;
+    flex: 0 0 28%;
+    align-self: auto;
+    margin: 30px auto 30px auto;
+    width: 556px;
+    height: 370px;
+    position: relative;
+    text-align: center;
+    background: black;
+}
+
+.home-grid-item:hover, .grid-item:hover{
+    background: grey;
+}    
 
 .home-img{
     object-fit: cover;
@@ -72,7 +143,7 @@
     height: 370px;
 }
 
-.home-grid-text{
+.home-grid-text, .grid-text{
     position: absolute;
     top: 50%;
     left: 50%;
@@ -83,7 +154,32 @@
     font-weight: 800;
     font-family: 'Poppins', sans-serif;
     line-height: 1.2;
+    width: 500px;
 }
+
+#more-btn{
+    background: #8bc34a;
+    width: 150px;
+    border-radius: 10px;
+    border: none;
+    cursor: pointer;
+    margin: 40px;
+    padding: 10px;
+    color: white;
+    font-weight: bolder;
+    display: block;
+    margin: 0 auto;
+    text-decoration: none;
+    position: absolute;
+    left: 50%;
+    margin-left: -15%;
+    margin-bottom: -5%;
+    bottom:0px;
+}
+
+#more-btn:hover{
+    background: #f4b804;
+}    
 
 .categories{
     display: flex;
@@ -141,12 +237,50 @@
     text-align: center;
 }
 
-nav{
-    background: #8bc34a;
+
+.recipe-title{
+    text-align: center;
+    color: #f4b804;
+    text-transform: uppercase;
+    width: 70%;
+    margin: 30px auto 10px auto;
+    font-size: 40px;
+    line-height: 1.2;
 }
 
-#add-form{
-    text-align: right;
+.recipe-container{
+    display: grid; 
+    grid-template-columns: 1.8fr 0.9fr 1.05fr; 
+    grid-template-rows: repeat(5, 1fr); 
+    grid-column-gap: 2px;
+    grid-row-gap: 0px;  
+    margin-top: 20px;
+}
+
+.recipe-img{
+    grid-area: 1 / 1 / 6 / 2;
+    width: 90%;
+    margin: 10px;
+    padding: 10px;
+    border: 2px solid #f4b804;
+}
+
+#ingredients{
+    grid-area: 1 / 2 / 6 / 3; 
+    margin: 0px;
+}
+
+#instructions{
+    grid-area: 1 / 3 / 6 / 4; 
+    margin-top: 0px;
+    margin-right: 35px;
+}
+
+#ingredients h3, #instructions h3, .comments h3{
+    margin-top: 0;
+    color: #8bc34a;
+    text-transform: uppercase;
+    font-size: 25px;
 }
 
 .fav-img{
@@ -154,6 +288,33 @@ nav{
     height: 370px;
 }
 
-#edit-form{
-    visibility: hidden;
+span{
+    float:right;
+    margin: 10px;
+    font-weight: bolder;
+    margin-right: 20px;
+}
+
+#add-btn{
+    border-radius: 50%;
+    background: #8bc34a;
+    font-size: 25px;
+    font-weight: bold;
+    border: none;
+    color: white;
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+    margin-left: 10px;
+}
+
+#add-btn:hover{
+    background: green;
+    margin-left: 10px;
+}   
+
+.comments{
+    margin-bottom: 100px;
+    width: 80%;
+    margin: 0px auto 100px auto;
 }

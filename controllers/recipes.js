@@ -87,7 +87,7 @@ router.get('/:id',function(req, res) {
             axios.get(recipeInfo)
             .then(response=> {
                 let recipeData = response.data
-                res.render('recipes/show', {recipeData: recipeData, recipeComments: []})
+                res.render('recipes/show', {recipeData: recipeData, recipeComments: [], recipeId: recipeId})
             })
         } else {
             console.log('THE RECIPE DOES EXIST!!!!')
@@ -149,30 +149,15 @@ router.post('/:id/comments', isLoggedIn, (req, res) => {
 
 // PUT /recipes/:id - update a comment and update the recipe/:id page
 // ----> COMMENT: PUT ROUTE <------
-router.post('/:id/comments', isLoggedIn, (req, res) => {
-    // console.log('NOW IM TRYING TO SEE WHAT TO DO WITH THIS DAMN COMMENTT??!?!??!')
-    db.recipe.findOrCreate({
-        where:{recipe_id: req.body.recipeId},
-        defaults: {
-            name: req.body.recipeName,
-            img_url: req.body.img_url
-        }  
-    }).then(([recipe, created])=>{
-        // console.log('FOUND THE USER!!!!!!!!!')
-        console.log('WAS RECIPE CREATED??? ==>>>>> ' + created)
-        db.comment.create({
-            name: req.body.name,
-            content: req.body.content,
-            recipeId: req.body.recipeId,
-            userId: req.user.id
-        }).then(comment => {
-            recipe.addComment(comment)
-            console.log(comment.content + ' was added to recipe #' + recipe.recipe_id);
-        }).catch((error) => {
-            console.log('THIS IS AN ERROR WITH CREATING THE COMMENT' + error)
-        })
+router.put('/:id', isLoggedIn, (req, res) => {
+    console.log('YOURE TRYING TO EDIT A COMMENT NOW');
+    db.comment.update(
+        { content: req.body.content },
+        { where: { id: req.body.commentId }
+    }).then(rowsUpdated => {
+            console.log('I JUST UPDATED A COMMENT, DID YOU SEE IT?!??!???!' + rowsUpdated);
     }).catch((error) => {
-        console.log('THIS IS AN ERROR WITH FINDING OR CREATING THE RECIPE  ' + error)
+            console.log('THIS IS AN ERROR WITH UPDATING THE COMMENT' + error)
     })
     res.redirect(`/recipes/${req.body.recipeId}`)
 })  

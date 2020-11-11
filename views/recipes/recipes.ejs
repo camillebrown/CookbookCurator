@@ -1,8 +1,8 @@
 <div class='grid3'> 
     <% recipeArray.forEach(recipe=>{ %>
         <div class='grid-item'>
-            <img src = "<%=recipe.image%>">
-            <p><%=recipe.title%></p>
+            <a href="/recipes/<%= recipe.id %>"><img class="home-img" src = "<%=recipe.image%>"></a>
+            <a class="grid-text" href="/recipes/<%= recipe.id %>"><%=recipe.title%></a>
             <form method="POST" action="/recipes/my-recipes" id="form">
                 <input hidden type="text" name="name" value="<%=recipe.title%>">
                 <input hidden type="text" name="img_url" value="<%=recipe.image%>">
