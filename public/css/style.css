@@ -3,6 +3,10 @@
     font-family: 'Poppins', sans-serif;
 }
 
+.body{
+    text-align: center;
+}
+
 .search { 
     grid-area: 1 / 1 / 2 / 7; 
     text-align: right;
@@ -46,15 +50,39 @@
     align-items: flex-start;
     margin: auto;
     margin-top: 50px;
-    width:80%;
+    width: 80%;
 }
 
 .home-grid-item{
     order: 0;
-    flex: 1 0 33%;
+    flex: 1 0 28%;
     align-self: auto;
-    margin: 10px;
-    width: 20%
+    margin: 30px;
+    width: 556px;
+    height: 370px;
+    position: relative;
+    text-align: center;
+    background: black;
+}
+
+.home-img{
+    object-fit: cover;
+    opacity: 0.4;
+    width: 556px;
+    height: 370px;
+}
+
+.home-grid-text{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-decoration: none !important;
+    font-size: 40px;
+    color: white;
+    font-weight: 800;
+    font-family: 'Poppins', sans-serif;
+    line-height: 1.2;
 }
 
 .categories{
@@ -111,4 +139,8 @@
 #categories{
     font-family: 'Poppins', sans-serif;
     text-align: center;
+}
+
+nav{
+    background: #8bc34a;
 }

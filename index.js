@@ -43,15 +43,13 @@ app.use((req, res, next) => {
 // controllers middleware
 app.use('/auth', require('./controllers/auth.js'));
 app.use('/recipes', require('./controllers/recipes.js'))
+app.use('/categories', require('./controllers/categories.js'))
 
 app.get('/', (req, res)=>{
     axios.get(`https://api.spoonacular.com/recipes/random?apiKey=${process.env.API_KEY}&number=6&type=main%20course`)
     .then(response=> {
         let homeArray = response.data.recipes
         res.render('home', {homeArray: homeArray})
-        homeArray.forEach(item=>{
-            console.log(item.dishTypes)
-        })
         // console.log(req.session.passport.user)
     }).catch(function (error) {
         console.error(error);

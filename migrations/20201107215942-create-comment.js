@@ -14,6 +14,12 @@ module.exports = {
       content: {
         type: Sequelize.STRING
       },
+      recipeId: {
+        type: Sequelize.INTEGER
+      },
+      userId: {
+        type: Sequelize.INTEGER
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE

@@ -13,7 +13,7 @@
                 <li><a href="/">HOME</a></li>
                 <li><a href="/about">ABOUT</a></li>
                 <li><a href="/recipes/my-recipes">MY RECIPES</a></li>
-                <li><a href="/recipes/categories">CATEGORIES</a></li>
+                <li><a href="/categories">CATEGORIES</a></li>
                 <% if (!currentUser) { %>
                     <li><a href="/auth/signup">SIGN UP</a></li>
                     <li><a href="/auth/login">LOGIN</a></li>
@@ -35,6 +35,8 @@
             <h1>App Title</h1>
         </div>     
     <%- include('partials/alerts.ejs') %>
-    <%- body %>
+    <div class='body'>
+        <%- body %>
+    </div>
 </body>
 </html>

@@ -1,0 +1,45 @@
+<h1 class='recipe-title'> <%=recipeData.title%> </h1>
+<p>Summary: <%recipeData.summary%></p>
+
+<div class="recipe-container">
+    <div>
+        <img class='recipe-img' src=<%=`${recipeData.image}`%>> 
+        <br>
+        <h3>Ingredients:</h3>
+        <ul id="ingredients">
+            <% recipeData.extendedIngredients.forEach(ingredient=>{ %>
+                <li><%=ingredient.original%></li>
+            <% }) %>
+        </ul>
+        <h3>Instructions:</h3>
+        <ol id="instructions">
+            <% recipeData.analyzedInstructions[0].steps.forEach(step=>{ %>
+                <li><%=step.step%></li>
+            <% }) %>
+        </ol>
+    </div>
+</div>  
+
+
+<div class="comments">
+    <h3> Add a New Comment: </h3>
+    
+    <form action="/recipes/:id/comments" method="POST">
+      <div class="form-group">
+        <input type="text" class="form-control" id="name" name="name" placeholder="Your Name" required>
+      </div>
+      
+      <div class="form-group">
+        <input type="text" class="form-control" id="content" name="content" placeholder="Write a Comment" required>
+      </div>
+      
+        <input hidden type="number" name="recipeId" value="<%=recipeData.id%>">
+        <input hidden type="number" name="recipeName" value="<%=recipeData.title%>">
+        <input hidden type="number" name="img_url" value="<%=recipeData.image%>">
+
+      <input type="submit" id="submit" class="btn btn-primary">
+    </form>
+      
+    </div>
+
+<a href="<%=recipeData.sourceUrl%>"><%=recipeData.sourceUrl%></a>

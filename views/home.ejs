@@ -1,7 +1,8 @@
 <div class="home-grid"> 
     <% for (let i=0;i<homeArray.length; i++){ %>
         <div class="home-grid-item">
-            <img src = "<%=homeArray[i].image%>">
+            <a href="/recipes/<%= homeArray[i].id %>"><img class="home-img" src = "<%=homeArray[i].image%>"></a>
+            <a class="home-grid-text" href="/recipes/<%= homeArray[i].id %>"><%=homeArray[i].title%></a>
         </div>
     <% } %>
 </div>
