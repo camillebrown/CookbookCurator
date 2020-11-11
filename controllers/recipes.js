@@ -101,21 +101,7 @@ router.get('/:id',function(req, res) {
     }).catch((error) => {
         console.log('THIS IS AN ERROR WITH THE PAGE !!! =>>>' + error)
     })
-});
-
-// DELETE /recipe/:id - Delete comment from the database and update recipe/:id page
-// ----> COMMENT: DELETE ROUTE <------
-router.delete('/:id', isLoggedIn, (req, res)=>{
-    console.log('YOURE TRYING TO DELETE A COMMENT NOW');
-    db.comment.destroy({
-        where: {content: req.body.content},
-        include: [db.user, db.recipe]
-    }).then(numRowsDeleted=>{
-        console.log('YOU DELETED A COMMENT!!!! and this is the number of rows gone ====>>>>' + numRowsDeleted)
-        res.redirect(`/recipes/${req.body.recipeId}`)
-    })
-})    
-
+});  
 
 // POST /recipes/:id - create a new comment and add to recipe/:id page
 // ----> COMMENT: POST ROUTE <------
@@ -145,6 +131,19 @@ router.post('/:id/comments', isLoggedIn, (req, res) => {
         console.log('THIS IS AN ERROR WITH FINDING OR CREATING THE RECIPE  ' + error)
     })
     res.redirect(`/recipes/${req.body.recipeId}`)
+})  
+
+// DELETE /recipe/:id - Delete comment from the database and update recipe/:id page
+// ----> COMMENT: DELETE ROUTE <------
+router.delete('/:id', isLoggedIn, (req, res)=>{
+    console.log('YOURE TRYING TO DELETE A COMMENT NOW');
+    db.comment.destroy({
+        where: {content: req.body.content},
+        include: [db.user, db.recipe]
+    }).then(numRowsDeleted=>{
+        console.log('YOU DELETED A COMMENT!!!! and this is the number of rows gone ====>>>>' + numRowsDeleted)
+        res.redirect(`/recipes/${req.body.recipeId}`)
+    })
 })  
 
 // PUT /recipes/:id - update a comment and update the recipe/:id page
