@@ -1,4 +1,10 @@
 <h1 class='recipe-title'> <%=recipeData.title%> </h1>
+<form method="POST" action="/recipes/my-recipes" id="add-form">
+    <input hidden type="text" name="name" value="<%=recipeData.title%>">
+    <input hidden type="text" name="img_url" value="<%=recipeData.image%>">
+    <input hidden type="text" name="recipe_id" value="<%=recipeData.id%>">
+    <button class="btn btn-primary" id="btn" type="submit">Add to My Cookbook</button>
+  </form>
 <p>Summary: <%recipeData.summary%></p>
 
 <div class="recipe-container">
@@ -33,13 +39,43 @@
         <input type="text" class="form-control" id="content" name="content" placeholder="Write a Comment" required>
       </div>
       
-        <input hidden type="number" name="recipeId" value="<%=recipeData.id%>">
-        <input hidden type="number" name="recipeName" value="<%=recipeData.title%>">
-        <input hidden type="number" name="img_url" value="<%=recipeData.image%>">
+        <input hidden type="number" name="recipeId" value="<%=recipeId%>">
+        <% console.log(recipeId) %>
+        <input hidden type="text" name="recipeName" value="<%=recipeData.title%>">
+        <input hidden type="text" name="img_url" value="<%=recipeData.image%>">
 
       <input type="submit" id="submit" class="btn btn-primary">
     </form>
       
-    </div>
+</div>
+
+
+<% recipeComments.forEach((comment)=> { %>
+    <div class="comment-content">
+      <h4 style="font-size: 15px; padding-top: 4px"><%= comment.content %> </h3>
+      <p style="font-size: 12px"><%= comment.name %></p>
+      <form method="POST" action='/recipes/<%= recipeId %>/?_method=DELETE'>
+        <input hidden type="text" name="name" value="<%=comment.name%>">
+        <input hidden type="text" name="content" value="<%=comment.content%>">
+        <input hidden type="text" name="recipeId" value="<%=recipeId%>">
+        <input type='submit' id="delete" value="Delete Comment">
+      </form>
+      <button onclick=" showForm() ">Edit Comment</button>
+        <% const showForm = () => { %>
+          <% console.log('IM CLICKIN BITCH!!!') %>
+          <% let editForm = document.getElementbyId('edit-form') %>
+          <% editForm.style.visibility = visible; %>
+        <% } %>
+    <form method='POST' id="edit-form" action='/recipes/<%= recipeId %>/?_method=PUT'>
+        <label for='name'>Name:</label>
+        <input type='text' name='name' id='name' value='<%= comment.name %>'>
+    
+        <label for='content'>Comment:</label>
+        <input type='text' name='content' id='content' value="<%=comment.content%>">
+    
+        <input id="submit-edit" type='submit'>
+    </form>
+    </div>  
+  <% }); %>
 
 <a href="<%=recipeData.sourceUrl%>"><%=recipeData.sourceUrl%></a>

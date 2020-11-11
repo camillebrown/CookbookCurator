@@ -1,16 +1,16 @@
 <h1> Favorites:</h1>
 
 <div class='grid3'> 
-    <% recipes.forEach(recipe=>{ %>
+    <% recipes.forEach((recipe)=>{ %>
         <div class='grid-item'>
-            <img src = "<%=recipe.img_url%>">
+            <img class="fav-img" src = "<%=recipe.img_url%>">
             <p><%=recipe.name%></p>
             <a href="/recipes/<%= recipe.recipe_id %>" class="learn-btn" id="btn">Check it Out!</a>
-            <form method='DELETE' action='/recipes/my-recipes'>
+            <form method="POST" action='/recipes/my-recipes/<%= recipe.recipe_id %>/?_method=DELETE'>
                 <input hidden type="text" name="name" value="<%=recipe.title%>">
                 <input hidden type="text" name="img_url" value="<%=recipe.image%>">
                 <input hidden type="text" name="recipe_id" value="<%=recipe.id%>">
-                <input type='submit' id="delete" value="Delete Recipe">
+                <input type='submit' id="delete" value="Delete from my Cookbook">
             </form>
         </div>
     <% }) %>

@@ -144,3 +144,16 @@
 nav{
     background: #8bc34a;
 }
+
+#add-form{
+    text-align: right;
+}
+
+.fav-img{
+    width: 556px;
+    height: 370px;
+}
+
+#edit-form{
+    visibility: hidden;
+}
