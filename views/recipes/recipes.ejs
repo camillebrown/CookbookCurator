@@ -1,14 +1,16 @@
+<p style="text-align:center; margin-bottom: 0px; font-size: 20px; font-weight: 200;">Viewing search results for "<%=recipe%>"</p>
 <div class='grid3'> 
     <% recipeArray.forEach(recipe=>{ %>
         <div class='grid-item'>
             <a href="/recipes/<%= recipe.id %>"><img class="home-img" src = "<%=recipe.image%>"></a>
             <a class="grid-text" href="/recipes/<%= recipe.id %>"><%=recipe.title%></a>
-            <form method="POST" action="/recipes/my-recipes" id="form">
+            <form method="POST" class="addTo-btn" action="/recipes/my-recipes">
                 <input hidden type="text" name="name" value="<%=recipe.title%>">
                 <input hidden type="text" name="img_url" value="<%=recipe.image%>">
                 <input hidden type="text" name="recipe_id" value="<%=recipe.id%>">
-                <button class="btn btn-primary" id="btn" type="submit">Favorite this Recipe</button>
+                <button class="btn btn-primary" id="addTo-btn" type="submit">+</button>
               </form>
+            <a href="/recipes/<%= recipe.id %>" class="btn btn-primary" id="more-btn" type="submit">CHECK IT OUT!</a>
         </div>
     <% }) %>
 </div>

@@ -1,13 +1,17 @@
-<h2>Login Page</h2>
+<div class="login-div">
+    <h3>LOGIN</h2>
+    <p>Enter your login credentials below</p>
 
-<form method="POST" action= "/auth/login">
+    <form method="POST" class="login-form" action= "/auth/login">
 
-    <label for="auth-email">Email</label>
-    <input type="email" name="email" id="auth-email">
+        <input type="email" name="email" id="auth-email" placeholder="Email">
 
-    <label for="auth-password">Password</label>
-    <input type="password" name="password" id="auth-password">
+        <input type="password" name="password" id="auth-password" placeholder="Password">
 
-    <input type="submit" value="Login">
+        <input type="submit" class="login-btn" value="LOGIN">
 
-</form>
+    </form>
+    <div class="new">
+        <p>New here? <a href="/auth/signup">Click here to sign up!</a></p>
+    </div>    
+</div>    

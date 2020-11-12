@@ -18,7 +18,7 @@ router.get('/', isLoggedIn, (req, res)=>{
     axios.get(`https://api.spoonacular.com/recipes/complexSearch?apiKey=${process.env.API_KEY}&query=${recipe}&number=16&instructionsRequired=true&addRecipeInformation=true&addRecipeNutrition=true&sort=popularity&sortDirection=desc`)
     .then(response=> {
         let recipeArray = response.data.results
-        res.render('recipes/recipes', {recipeArray: recipeArray})
+        res.render('recipes/recipes', {recipeArray: recipeArray, recipe: recipe})
     }).catch(function (error) {
         console.error(error);
     });
@@ -114,21 +114,21 @@ router.post('/:id/comments', isLoggedIn, (req, res) => {
             img_url: req.body.img_url
         }  
     }).then(([recipe, created])=>{
-        // console.log('FOUND THE USER!!!!!!!!!')
-        console.log('WAS RECIPE CREATED??? ==>>>>> ' + created)
+        // console.log('WAS RECIPE CREATED??? ==>>>>> ' + created)
         db.comment.create({
             name: req.body.name,
             content: req.body.content,
             recipeId: req.body.recipeId,
             userId: req.user.id
         }).then(comment => {
+            // console.log('IM TRYING TO CREATE A COMMENT!!!')
             recipe.addComment(comment)
             console.log(comment.content + ' was added to recipe #' + recipe.recipe_id);
         }).catch((error) => {
-            console.log('THIS IS AN ERROR WITH CREATING THE COMMENT' + error)
+            console.log('THIS IS AN ERROR WITH CREATING THE COMMENT  =>' + error)
         })
     }).catch((error) => {
-        console.log('THIS IS AN ERROR WITH FINDING OR CREATING THE RECIPE  ' + error)
+        console.log('THIS IS AN ERROR WITH FINDING OR CREATING THE RECIPE  =>' + error)
     })
     res.redirect(`/recipes/${req.body.recipeId}`)
 })  

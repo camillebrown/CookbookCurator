@@ -81,7 +81,6 @@ li a{
 }
 
 .about { 
-    /* grid-area: 5 / 1 / 6 / 7;  */
     text-align:center;
     font-family: 'Poppins', sans-serif;
     width: 80%;
@@ -98,9 +97,9 @@ li a{
 
 .grid-item{
     order: 0;
-    flex: 1 0 21%;
+    flex: 0 0 21%;
     align-self: auto;
-    margin: 10px;
+    margin: 30px auto 30px auto;
     width: 556px;
     height: 370px;
     position: relative;
@@ -238,7 +237,7 @@ li a{
 }
 
 
-.recipe-title{
+.recipe-title, .cb-title{
     text-align: center;
     color: #f4b804;
     text-transform: uppercase;
@@ -311,10 +310,215 @@ span{
 #add-btn:hover{
     background: green;
     margin-left: 10px;
-}   
-
-.comments{
-    margin-bottom: 100px;
-    width: 80%;
-    margin: 0px auto 100px auto;
 }
+
+.comments, .comment-content{
+    width: 80%;
+    margin: 0px auto 50px auto;
+}
+
+.comment-form, .login-form, .edit-form{
+    margin-top: 20px;
+}
+
+#com-content{
+    border-radius: 5px;
+    width: 90%;
+    height: 100px;
+    border: 1px solid grey;
+}
+
+#com-name{
+    border-radius: 5px;
+    height: 30px;
+    margin-bottom: 10px;
+    margin-left: 0;
+    border: 1px solid grey;
+}
+
+#submit, .login-btn, .signup-btn{
+    background: #8bc34a;
+    width: 150px;
+    border-radius: 10px;
+    border: none;
+    cursor: pointer;
+    margin-top: 7px;
+    padding: 10px;
+    color: white;
+    font-weight: bolder;
+}
+
+#submit-edit{
+    background: #8bc34a;
+    width: 100px;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+    margin-top: 7px;
+    padding: 5px;
+    color: white;
+    font-weight: bolder;
+}
+
+#submit:hover, .login-btn:hover, .signup-btn:hover, #submit-edit:hover{
+    background: #4caf50;
+}
+
+.login-div, .signup-div{
+    border: 3px solid #f4b804;
+    width: 50%;
+    margin: 50px auto 50px auto;
+    border-radius: 10px;
+    height: 500px;
+    text-align: center;
+    position:relative;
+}
+
+.login-div h3, .signup-div h3{
+    color: #4caf50;
+    font-size: 40px;
+    margin-top: 35px;
+    margin-bottom: 10px;
+}
+
+#auth-email, #auth-password, #new-password{
+    display: block;
+    margin: 20px auto 20px auto;
+}
+
+#auth-email:hover, #auth-email:focus,#auth-password:hover,#auth-password:focus, #new-password:hover,#new-password:focus, #new-name:hover,#new-name:focus, #new-email:hover,#new-email:focus{
+    padding: 12px 0;
+    outline: 0;
+    border: 1px solid transparent;
+    border-bottom: 1px solid #575756;
+    border-radius: 0;
+    background-position: 100% center;
+}
+
+input[type="email"],input[type="password"],input[id="new-name"] {
+    width: 40%;
+    margin: 12px 24px;
+    padding: 12px 24px;
+    text-transform: uppercase;
+    background-color: transparent;
+    transition: transform 250ms ease-in-out;
+    font-size: 14px;
+    line-height: 18px;
+    color: #575756;
+    background-color: transparent;
+    background-repeat: no-repeat;
+    background-size: 18px 18px;
+    background-position: 95% center;
+    border-radius: 50px;
+    border: 1px solid #575756;
+    transition: all 250ms ease-in-out;
+    backface-visibility: hidden;
+    transform-style: preserve-3d;
+}
+
+.new{
+    position: absolute;
+    left: 50%;
+    margin-left: -15%;
+    bottom:0px;
+}
+
+.com-icon{
+    margin-right: 15px;
+    float: left;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+}
+
+#edit-name, #edit-content{
+    border-radius: 5px;
+    height: 20px;
+    margin-bottom: 10px;
+    margin-left: 0;
+    border: 1px solid lightgray;
+}
+
+#edit-content{
+    width: 400px;
+}
+
+#delete{
+    background: red;
+    width: 125px;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+    margin-top: 7px;
+    padding: 5px;
+    color: white;
+    font-weight: bolder;
+}
+
+#delete:hover, #deleteFrom-btn:hover{
+    background: #BF0000;
+}
+
+#edit-btn{
+    background: #f4b804;
+    width: 125px;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+    margin-top: 7px;
+    padding: 5px;
+    color: white;
+    font-weight: bolder;
+}
+
+#edit-btn:hover{
+    background: #b38600;
+}  
+.addTo-btn{
+    position: absolute;
+    top:0;
+    right:0;
+    margin-right: -10px;
+    margin-top: -15px;
+}
+
+#addTo-btn{
+    width: 40px;
+    height: 40px;
+    border: none;
+    border-radius: 50%;
+    font-size: 20px;
+    font-weight: bolder;
+    background: #4caf50;
+    cursor: pointer;
+    color: white;
+}
+
+#addTo-btn:hover, #view-add-btn:hover{
+    background: green;
+}    
+
+#view-add-btn{
+    width: 40px;
+    height: 40px;
+    border: none;
+    border-radius: 50%;
+    font-size: 20px;
+    font-weight: bolder;
+    background: #4caf50;
+    cursor: pointer;
+    color: white;
+    margin-left: 10px;
+}
+
+#deleteFrom-btn{
+    width: 40px;
+    height: 40px;
+    border: none;
+    border-radius: 50%;
+    font-size: 20px;
+    font-weight: bolder;
+    background: red;
+    cursor: pointer;
+    color: white;
+}    

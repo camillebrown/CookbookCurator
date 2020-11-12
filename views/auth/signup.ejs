@@ -1,15 +1,15 @@
-<h2>Sign Up Page</h2>
+<div class="signup-div">
+    <h3>SIGN UP</h2>
+    <p>Create a new account below</p>
 
-<form method="POST" action= "/auth/signup">
-    <label for="new-name">Name</label>
-    <input type="text" name="name" id="new-name">
+    <form method="POST" action= "/auth/signup">
+        <input type="text" name="name" id="new-name" placeholder="Name">
 
-    <label for="new-email">Email</label>
-    <input type="email" name="email" id="new-email">
+        <input type="email" name="email" id="new-email" placeholder="Email">
 
-    <label for="new-password">Password</label>
-    <input type="password" name="password" id="new-password">
+        <input type="password" name="password" id="new-password" placeholder="Password">
 
-    <input type="submit" value="Sign Up">
+        <input type="submit" class="signup-btn" value="Sign Up">
 
-</form>
+    </form>
+</div>       
