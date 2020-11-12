@@ -1,14 +1,14 @@
 <h1 class="cb-title"> MY COOKBOOK RECIPES</h1>
 <div class='grid3'> 
     <% recipes.forEach((recipe)=>{ %>
-        <div class='home-grid-item'>
+        <div class='grid-item' id="my-book-grid-item">
             <a href="/recipes/<%= recipe.recipe_id %>"><img class="fav-img" src = "<%=recipe.img_url%>"></a>
             <a class="home-grid-text" href="/recipes/<%= recipe.recipe_id %>"><%=recipe.name%></a>
             <form method="POST" class="addTo-btn" action='/recipes/my-recipes/<%= recipe.recipe_id %>/?_method=DELETE'>
                 <input hidden type="text" name="name" value="<%=recipe.title%>">
                 <input hidden type="text" name="img_url" value="<%=recipe.image%>">
                 <input hidden type="text" name="recipe_id" value="<%=recipe.id%>">
-                <input type='submit' id="deleteFrom-btn" value="+">
+                <input type='submit' id="deleteFrom-btn" value="DELETE">
             </form>
             <a href="/recipes/<%= recipe.recipe_id %>" id="more-btn" id="btn">CHECK IT OUT!</a>
         </div>

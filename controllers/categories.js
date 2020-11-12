@@ -12,9 +12,37 @@ const user = require('../models/user');
 // GET /categories
 // get recipes based on category
 router.get('/', (req, res)=>{
-    res.render('categories')
+    res.render('categories/home')
 })
 
+// get breakfast recipes
+router.get('/breakfast', (req, res)=>{
+    axios.get(`https://api.spoonacular.com/recipes/random?apiKey=${process.env.API_KEY}&number=10&type=breakfast`)
+    .then(response=> {
+        let homeArray = response.data.recipes
+        res.render('categories/breakfast', {homeArray: homeArray})
+        // console.log(req.session.passport.user)
+    }).catch(function (error) {
+        console.error(error);
+    });
+})
 
+// GET /categories
+// get recipes based on category
+router.get('/lunch', (req, res)=>{
+    res.render('categories/lunch')
+})
+
+// GET /categories
+// get recipes based on category
+router.get('/dinner', (req, res)=>{
+    res.render('categories/dinner')
+})
+
+// GET /categories
+// get recipes based on category
+router.get('/dessert', (req, res)=>{
+    res.render('categories/dessert')
+})
 
 module.exports = router

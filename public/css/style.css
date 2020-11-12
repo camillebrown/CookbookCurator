@@ -107,7 +107,7 @@ li a{
     background: black;
 }
 
-.home-grid, .grid3{
+.home-grid, .grid3, .categories{
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
@@ -131,7 +131,7 @@ li a{
     background: black;
 }
 
-.home-grid-item:hover, .grid-item:hover{
+.home-grid-item:hover, .grid-item:hover, .category-item:hover{
     background: grey;
 }    
 
@@ -157,7 +157,7 @@ li a{
 }
 
 #more-btn{
-    background: #8bc34a;
+    background: #f4b804;
     width: 150px;
     border-radius: 10px;
     border: none;
@@ -177,7 +177,7 @@ li a{
 }
 
 #more-btn:hover{
-    background: #f4b804;
+    background: #fda50f;
 }    
 
 .categories{
@@ -192,19 +192,23 @@ li a{
 }
 
 .category-item{
+    background: black;
     order: 0;
-    flex: 1 0 15%;
+    flex: 0 0 15%;
     align-self: auto;
-    margin: 10px;
+    margin: 10px auto 40px auto;
     width: 20%;
     position: relative;
     text-align: center;
-    width: 90%;
+    height: 425px;
+    width: 285px;
 }
 
 .cat-img{
     width: 285px;
     height: 425px;
+    object-fit: cover;
+    opacity: 0.4;
 }
 
 .cat-text {
@@ -219,23 +223,10 @@ li a{
     font-family: 'Poppins', sans-serif;
 }
 
-.img-overlay{
-    position: absolute;
-    width: 285px;
-    height: 425px;
-    top: 0; 
-    left: 2.005%;
-    right: 0;
-    bottom: 2.005%;
-    background-color: rgba(0,0,0,0.3); /* Black background with opacity */
-    cursor: pointer; /* Add a pointer on hover */
-}
-
 #categories{
     font-family: 'Poppins', sans-serif;
     text-align: center;
 }
-
 
 .recipe-title, .cb-title{
     text-align: center;
@@ -285,6 +276,8 @@ li a{
 .fav-img{
     width: 556px;
     height: 370px;
+    object-fit: cover;
+    opacity: 0.4;
 }
 
 span{
@@ -512,13 +505,16 @@ input[type="email"],input[type="password"],input[id="new-name"] {
 }
 
 #deleteFrom-btn{
-    width: 40px;
-    height: 40px;
+    width: 60px;
+    height: 25px;
     border: none;
-    border-radius: 50%;
-    font-size: 20px;
-    font-weight: bolder;
+    border-radius: 10px;
+    font-size: 10px;
     background: red;
     cursor: pointer;
     color: white;
-}    
+}
+
+#my-book-grid{
+    margin-bottom: 75px;
+}
