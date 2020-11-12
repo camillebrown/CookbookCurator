@@ -58,11 +58,6 @@ app.get('/', (req, res)=>{
     
 })
 
-app.get('/profile', isLoggedIn, (req, res) =>{
-    // adding isLoggedIn ^ is an optional middleware parameter that tells the route that it's only an accessible route if that middleware parameter is met
-    res.render('profile')
-})
-
 app.listen(process.env.PORT, ()=>{
     console.log(`You're now listening to the smooth sounds of port ${process.env.PORT}`)
 })

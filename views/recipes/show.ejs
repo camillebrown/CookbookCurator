@@ -55,7 +55,6 @@
       <input hidden type="text" name="content" value="<%=comment.content%>">
       <input hidden type="text" name="recipeId" value="<%=recipeId%>">
       <input type='submit' id="delete" value="Delete Comment">
-      <input type='submit' id="edit-btn" value="Edit Comment">
     </form>
   <form method='POST' id="edit-form" action='/recipes/<%= recipeId %>/?_method=PUT'>
       <input type='text' name='name' id='edit-name' value='<%= comment.name %>'>
@@ -63,9 +62,11 @@
       <input type='text' name='content' id='edit-content' placeholder="Type your updated comment">
       <input hidden type="number" name="commentId" value="<%=comment.id%>">
       <input hidden type="text" name="recipeId" value="<%=recipeId%>">
-      <input id="submit-edit" type='submit'>
+      <input type='submit' id="edit-btn" value="Edit Comment">
   </form>
   </div>  
 <% }); %>
 
-<a href="<%=recipeData.sourceUrl%>"><%=recipeData.sourceUrl%></a>
+<div style="text-align: center; margin-bottom: 15px;">
+  <a class="ref-link" href="<%=recipeData.sourceUrl%>"><%=recipeData.sourceUrl%></a>
+</div>

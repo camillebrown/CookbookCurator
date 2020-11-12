@@ -1,0 +1,16 @@
+<p style="text-align:center; margin-bottom: 10px; font-size: 20px; font-weight: 200;">Check out some popular dinner recipes below!</p>
+<div class="home-grid"> 
+    <% for (let i=0;i<homeArray.length; i++){ %>
+        <div class="home-grid-item">
+            <a href="/recipes/<%= homeArray[i].id %>"><img class="home-img" src = "<%=homeArray[i].image%>"></a>
+            <a class="home-grid-text" href="/recipes/<%= homeArray[i].id %>"><%=homeArray[i].title%></a>
+            <form method="POST" class="addTo-btn" action="/recipes/my-recipes">
+                <input hidden type="text" name="name" value="<%=homeArray[i].title%>">
+                <input hidden type="text" name="img_url" value="<%=homeArray[i].image%>">
+                <input hidden type="text" name="recipe_id" value="<%=homeArray[i].id%>">
+                <button class="btn btn-primary" id="addTo-btn" type="submit">+</button>
+            </form>
+              <a href="/recipes/<%= homeArray[i].id %>" class="btn btn-primary" id="more-btn" type="submit">CHECK IT OUT!</a>
+            </div>
+    <% } %>
+</div>
