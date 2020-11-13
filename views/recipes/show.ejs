@@ -28,45 +28,63 @@
     <h3> WRITE A REVIEW </h3>
     
     <form action="/recipes/:id/comments" class="comment-form" method="POST">
-      <div class="form-group">
-        <input type="text" class="form-control" id="com-name" name="name" placeholder="Your Name" required>
+      <div hidden class="form-group">
+        <input type="text" class="form-control" id="com-name" name="name" placeholder="Your Name">
       </div>
       
       <div class="form-group">
-        <input type="text" class="form-control" id="com-content" name="content" placeholder="Write a Review" required>
+        <input type="text" class="form-control" id="com-content" name="content" placeholder="Write a Review! Tell us what you think." required>
       </div>
       
         <input hidden type="number" name="recipeId" value="<%=recipeId%>">
         <input hidden type="text" name="recipeName" value="<%=recipeData.title%>">
         <input hidden type="text" name="img_url" value="<%=recipeData.image%>">
+        <input hidden type="text" name="userId" value="<%=user.id%>">
 
       <input type="submit" id="submit" class="btn btn-primary" value="SUBMIT">
     </form>
       
 </div>
 
-<% recipeComments.forEach((comment)=> { %>
-  <div class="comment-content" style="margin-bottom: 100px;">
-    <img class="com-icon" src="https://daltonhearing.com/wp-content/uploads/person-icon.png">
-    <p style="font-size: 12px; margin: 0px;"><%= comment.name %></p>
-    <h4 style="font-size: 15px; margin: 5px 0px 5px 0px;"><%= comment.content %> </h3>
-    <form method="POST" action='/recipes/<%= recipeId %>/?_method=DELETE'>
-      <input hidden type="text" name="name" value="<%=comment.name%>">
-      <input hidden type="text" name="content" value="<%=comment.content%>">
-      <input hidden type="text" name="recipeId" value="<%=recipeId%>">
-      <input type='submit' id="delete" value="Delete Comment">
-    </form>
-  <form method='POST' id="edit-form" action='/recipes/<%= recipeId %>/?_method=PUT'>
-      <input type='text' name='name' id='edit-name' value='<%= comment.name %>'>
-  
-      <input type='text' name='content' id='edit-content' placeholder="Type your updated comment">
-      <input hidden type="number" name="commentId" value="<%=comment.id%>">
-      <input hidden type="text" name="recipeId" value="<%=recipeId%>">
-      <input type='submit' id="edit-btn" value="Edit Comment">
-  </form>
-  </div>  
-<% }); %>
+<div class="all-comments">
+  <% recipeComments.forEach((comment)=> { %>
+    <div class="comment-content">
+      <img class="com-icon" src="https://daltonhearing.com/wp-content/uploads/person-icon.png">
+      <p style="font-size: 12px; margin: 0px;"><%= comment.name %></p>
+      <h4 style="font-size: 15px; margin: 5px 0px 5px 0px;"><%= comment.content %> </h3>
+        <% if (comment.userId === user.id) { %>
 
+          <form method="POST" action='/recipes/<%= recipeId %>/?_method=DELETE'>
+            <input hidden type="text" name="name" value="<%=comment.name%>">
+            <input hidden type="text" name="content" value="<%=comment.content%>">
+            <input hidden type="text" name="recipeId" value="<%=recipeId%>">
+            <input type='submit' id="delete" value="Delete Comment">
+          </form>
+          <form method='POST' id="edit-form" action='/recipes/<%= recipeId %>/?_method=PUT'>
+            <input hidden type='text' name='name' id='edit-name' value='<%= user.name %>'>
+            <input type='text' name='content' id='edit-content' placeholder="Type your updated comment">
+            <input hidden type="number" name="commentId" value="<%=comment.id%>">
+            <input hidden type="text" name="recipeId" value="<%=recipeId%>">
+            <input type='submit' id="edit-btn" value="Edit Comment">
+          </form>
+        <% } else { %>
+          <form hidden method="POST" action='/recipes/<%= recipeId %>/?_method=DELETE'>
+            <input hidden type="text" name="name" value="<%=user.name%>">
+            <input hidden type="text" name="content" value="<%=comment.content%>">
+            <input hidden type="text" name="recipeId" value="<%=recipeId%>">
+            <input type='submit' id="delete" value="Delete Comment">
+          </form>
+          <form hidden method='POST' id="edit-form" action='/recipes/<%= recipeId %>/?_method=PUT'>
+            <input type='text' name='name' id='edit-name' value='<%= user.name %>'>
+            <input type='text' name='content' id='edit-content' placeholder="Type your updated comment">
+            <input hidden type="number" name="commentId" value="<%=comment.id%>">
+            <input hidden type="text" name="recipeId" value="<%=recipeId%>">
+            <input type='submit' id="edit-btn" value="Edit Comment">
+          </form>
+        <% } %>
+    </div>  
+  <% }); %>
+</div>
 <div style="text-align: center; margin-bottom: 15px;">
   <a class="ref-link" href="<%=recipeData.sourceUrl%>"><%=recipeData.sourceUrl%></a>
 </div>

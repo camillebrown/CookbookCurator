@@ -11,12 +11,12 @@ const user = require('../models/user');
 
 // GET /categories
 // get recipes based on category
-router.get('/', (req, res)=>{
+router.get('/' , isLoggedIn, (req, res)=>{
     res.render('categories/home')
 })
 
 // get breakfast recipes
-router.get('/breakfast', (req, res)=>{
+router.get('/breakfast' , isLoggedIn, (req, res)=>{
     axios.get(`https://api.spoonacular.com/recipes/complexSearch?apiKey=${process.env.API_KEY}&query=breakfast&number=16`)
     .then(response=> {
         let homeArray = response.data.results
@@ -29,7 +29,7 @@ router.get('/breakfast', (req, res)=>{
 })
 
 // get lunch recipes
-router.get('/lunch', (req, res)=>{
+router.get('/lunch', isLoggedIn, (req, res)=>{
     axios.get(`https://api.spoonacular.com/recipes/complexSearch?apiKey=${process.env.API_KEY}&query=lunch&number=16`)
     .then(response=> {
         let homeArray = response.data.results
@@ -41,7 +41,7 @@ router.get('/lunch', (req, res)=>{
 })
 
 // get dinner recipes
-router.get('/dinner', (req, res)=>{
+router.get('/dinner', isLoggedIn, (req, res)=>{
     axios.get(`https://api.spoonacular.com/recipes/complexSearch?apiKey=${process.env.API_KEY}&query=dinner&number=16`)
     .then(response=> {
         let homeArray = response.data.results
@@ -53,7 +53,7 @@ router.get('/dinner', (req, res)=>{
 })
 
 // get dessert recipes
-router.get('/dessert', (req, res)=>{
+router.get('/dessert', isLoggedIn, (req, res)=>{
     axios.get(`https://api.spoonacular.com/recipes/complexSearch?apiKey=${process.env.API_KEY}&query=dessert&number=16`)
     .then(response=> {
         let homeArray = response.data.results

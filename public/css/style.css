@@ -1,7 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800&family=Roboto+Slab:wght@200;300;400&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Rock+Salt&display=swap');
 
-
 body{
     margin: 0;
     font-family: 'Poppins', sans-serif;
@@ -40,6 +39,7 @@ nav{
 
 .nav-li-2 {
     float: right;
+    margin-right: 10px;
 }
 
 li a:hover {
@@ -116,6 +116,7 @@ li a{
     align-items: flex-start;
     margin: auto;
     margin-top: 10px;
+    margin-bottom: 50px;
     width: 80%;
 }
 
@@ -196,7 +197,10 @@ li a{
     position: relative;
     text-align: center;
     height: 425px;
-    /* width: 285px; */
+}
+
+#category-div{
+    margin-bottom: 100px;
 }
 
 .cat-img{
@@ -305,7 +309,12 @@ span{
     margin: 0px auto 50px auto;
 }
 
-.comment-form, .login-form, .edit-form{
+.all-comments{
+    margin-top: 20px;
+    margin-bottom: 50px;
+}
+
+.login-form{
     margin-top: 20px;
 }
 

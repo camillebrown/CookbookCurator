@@ -49,7 +49,7 @@ app.get('/', (req, res)=>{
     axios.get(`https://api.spoonacular.com/recipes/random?apiKey=${process.env.API_KEY}&number=6&type=main%20course`)
     .then(response=> {
         let homeArray = response.data.recipes
-        console.log(homeArray)
+        // console.log(homeArray)
         res.render('home', {homeArray: homeArray})
         // console.log(req.session.passport.user)
     }).catch(function (error) {

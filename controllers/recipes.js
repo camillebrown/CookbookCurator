@@ -32,7 +32,7 @@ router.get('/my-recipes', isLoggedIn, (req, res)=>{
         where: {id: req.session.passport.user},
         include: [db.recipe]
     }).then(user=>{
-        res.render('recipes/my-recipes', {recipes: user.recipes})
+        res.render('recipes/my-recipes', {recipes: user.recipes, user: req.user})
     }).catch(function (error) {
         console.error('GETTING AN ERROR WHEN TRYING TO GET THE USERS RECIPES!!!! ===>' + error);
     });
@@ -42,7 +42,7 @@ router.get('/my-recipes', isLoggedIn, (req, res)=>{
 // ----> MY RECIPES: POST ROUTE <------
 router.post('/my-recipes', isLoggedIn, (req, res) => {
     //Get form data and add a new record to DB
-    console.log('Form Data: ', req.body)
+    // console.log('Form Data: ', req.body)
     db.recipe.findOrCreate({
         where: {
             name: req.body.name,
@@ -75,7 +75,7 @@ router.delete('/my-recipes/:id', isLoggedIn, (req, res)=>{
 
 // GET /recipe/:id - Get information about the recipe with the corresponding row id.
 // ----> COMMENT: GET ROUTE <------
-router.get('/:id',function(req, res) {
+router.get('/:id', isLoggedIn,function(req, res) {
     db.recipe.findOne({
         where: {recipe_id: req.params.id},
         include: [db.user, db.comment]
@@ -87,7 +87,7 @@ router.get('/:id',function(req, res) {
             axios.get(recipeInfo)
             .then(response=> {
                 let recipeData = response.data
-                res.render('recipes/show', {recipeData: recipeData, recipeComments: [], recipeId: recipeId})
+                res.render('recipes/show', {recipeData: recipeData, recipeComments: [], recipeId: recipeId, user: req.user})
             })
         } else {
             console.log('THE RECIPE DOES EXIST!!!!')
@@ -95,7 +95,7 @@ router.get('/:id',function(req, res) {
             axios.get(recipeInfo)
             .then(response=> {
                 let recipeData = response.data
-                res.render('recipes/show', {recipeData: recipeData, recipeComments: recipe.comments, recipeId: req.params.id})
+                res.render('recipes/show', {recipeData: recipeData, recipeComments: recipe.comments, recipeId: req.params.id, user: req.user})
             })
         }
     }).catch((error) => {
@@ -106,6 +106,7 @@ router.get('/:id',function(req, res) {
 // POST /recipes/:id - create a new comment and add to recipe/:id page
 // ----> COMMENT: POST ROUTE <------
 router.post('/:id/comments', isLoggedIn, (req, res) => {
+    console.log(req.body)
     // console.log('NOW IM TRYING TO SEE WHAT TO DO WITH THIS DAMN COMMENTT??!?!??!')
     db.recipe.findOrCreate({
         where:{recipe_id: req.body.recipeId},
@@ -116,7 +117,7 @@ router.post('/:id/comments', isLoggedIn, (req, res) => {
     }).then(([recipe, created])=>{
         // console.log('WAS RECIPE CREATED??? ==>>>>> ' + created)
         db.comment.create({
-            name: req.body.name,
+            name: req.user.name,
             content: req.body.content,
             recipeId: req.body.recipeId,
             userId: req.user.id
