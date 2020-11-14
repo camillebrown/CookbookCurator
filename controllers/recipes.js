@@ -4,9 +4,6 @@ const axios = require("axios").default;
 const db = require('../models');
 router.use(express.urlencoded({extended: false}))
 const isLoggedIn = require('../middleware/isLoggedIn')
-const session = require('express-session')
-const passport = require('../config/ppConfig.js');
-const user = require('../models/user');
 var methodOverride = require('method-override');
 
 router.use(methodOverride('_method'));

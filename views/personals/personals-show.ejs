@@ -1,0 +1,18 @@
+
+<h1 class='recipe-title'> <%=personal.name%> </h1>
+<div class="recipe-container">
+  <img class='recipe-img' style="width: 600px; margin:auto" src=<%=`${personal.img_url}`%>> 
+  <br>
+  <ul id="ingredients">
+    <h3>Ingredients:</h3>
+    <% ingArray.forEach(ingredient=>{ %>
+      <li><%=ingredient%></li>
+    <% }) %>
+  </ul>
+  <ol id="instructions">
+    <h3>Instructions:</h3>
+    <% insArray.forEach(instruction=>{ %>
+      <li><%=instruction%></li>
+    <% }) %>
+  </ol>
+</div>  

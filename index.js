@@ -44,6 +44,7 @@ app.use((req, res, next) => {
 app.use('/auth', require('./controllers/auth.js'));
 app.use('/recipes', require('./controllers/recipes.js'))
 app.use('/categories', require('./controllers/categories.js'))
+app.use('/personals', require('./controllers/personals.js'))
 
 app.get('/', (req, res)=>{
     axios.get(`https://api.spoonacular.com/recipes/random?apiKey=${process.env.API_KEY}&number=6&type=main%20course`)

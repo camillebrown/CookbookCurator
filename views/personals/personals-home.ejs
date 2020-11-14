@@ -1,0 +1,19 @@
+<h1 class="cb-title"> MY PERSONAL RECIPES</h1>
+<div style="height: 50px">
+    <span id="view-addTo-btn">CREATE YOUR OWN RECIPE<button class="btn btn-primary" id="view-add-btn" type="submit"><a style="text-decoration: none; color: white;" href="/personals/new">+</a></button></span>
+</div>
+<div class='grid3'> 
+    <% personalRecipes.forEach((recipe)=>{ %>
+        <div class='grid-item' id="my-book-grid-item">
+            <a href="/personals/show/<%= recipe.id %>"><img class="fav-img" src = "<%=recipe.img_url%>"></a>
+            <a class="home-grid-text" href="/personals/show/<%= recipe.id %>"><%=recipe.name%></a>
+            <form method="POST" class="addTo-btn" action='/personals/<%= recipe.id %>/?_method=DELETE'>
+                <input hidden type="text" name="name" value="<%=recipe.name%>">
+                <input hidden type="text" name="img_url" value="<%=recipe.img_url%>">
+                <input hidden type="text" name="id" value="<%=recipe.id%>">
+                <input type='submit' id="deleteFrom-btn" value="DELETE">
+            </form>
+            <a href="/personals/show/<%= recipe.id %>" id="more-btn" id="btn">CHECK IT OUT!</a>
+        </div>
+    <% }) %>
+</div>

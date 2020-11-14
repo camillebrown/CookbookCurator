@@ -1,0 +1,30 @@
+<h3 class="cb-title">CREATE A NEW RECIPE</h2>
+<p style="text-align:center; margin-bottom: 30px; font-size: 20px; font-weight: 200;">Build out your own personal recipe to add to your cookbook!</p>
+
+<div class="new-recipe-div">
+  
+    <form action="/personals/show/:id" method="POST" class="new-recipe">
+        <div style="margin-top:30px" class="form-group">
+            <label class="form-title" for="name">Recipe Title</label>
+            <input type="text" class="recipe-form" id="recipe-name" name="name" required>
+        </div>
+        <div class="form-group">
+            <label class="form-title" for="img_url">Link an Image Source</label>
+            <input type="text" class="recipe-form" id="recipe-img_url" name="img_url" required>
+        </div>
+        <div class="form-group">
+            <label class="form-title" for="ingredients">Ingredients</label>
+            <p style="text-align:center; font-size: 15px;">Edit the bullet points below to include your ingredients. Delete any bullets you don't need and save!</p>
+        
+            <textarea type="text" class="ingredients-form" id="pers-ingredients" name="ingredients" required></textarea>
+        </div>
+        <div class="form-group" id="instructions-div">
+            <label class="form-title" for="instructions">Instructions</label>
+            <p style="text-align:center; font-size: 15px;">Edit the numbered list below to include your instructions. Delete any numbers you don't need and save!</p>
+           
+            <textarea type="text" class="instructions-form" id="pers-instructions" name="instructions" required></textarea>
+        </div>
+        <input hidden type="text" name="userId" value="<%=user.id%>">
+        <input type="submit" class="new-recipe-btn" value="CREATE NEW RECIPE">
+    </form>
+</div>

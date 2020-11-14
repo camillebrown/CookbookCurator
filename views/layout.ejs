@@ -15,6 +15,7 @@
                 <li class='nav-li'><a href="http://localhost:<%= process.env.PORT%>#about-section">ABOUT</a></li>
                 <li class='nav-li'><a href="/recipes/my-recipes">MY RECIPES</a></li>
                 <li class='nav-li'><a href="/categories">CATEGORIES</a></li>
+                <li class='nav-li'><a href="/personals">PERSONALS</a></li>
                 <% if (!currentUser) { %>
                     <li class='nav-li-2'><a href="/auth/signup">SIGN UP</a></li>
                     <li class='nav-li-2'><a href="/auth/login">LOGIN</a></li>
@@ -33,7 +34,7 @@
             </form>
         </div> 
         <div class="heading">
-            <h1 id="app-title">Cookbook Curator</h1>
+            <img src="https://i.ibb.co/vBBb1PB/Cookbook-Curator-01-1.png" alt="Cookbook Curator Logo" style="width: 425px">
         </div>
         <hr style="width: 80%; margin-top: 50px;">     
     <%- include('partials/alerts.ejs') %>

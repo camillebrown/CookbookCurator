@@ -20,7 +20,6 @@ router.get('/breakfast' , isLoggedIn, (req, res)=>{
     axios.get(`https://api.spoonacular.com/recipes/complexSearch?apiKey=${process.env.API_KEY}&query=breakfast&number=16`)
     .then(response=> {
         let homeArray = response.data.results
-        console.log(homeArray)
         res.render('categories/breakfast', {homeArray: homeArray})
         // console.log(req.session.passport.user)
     }).catch(function (error) {
@@ -30,9 +29,9 @@ router.get('/breakfast' , isLoggedIn, (req, res)=>{
 
 // get lunch recipes
 router.get('/lunch', isLoggedIn, (req, res)=>{
-    axios.get(`https://api.spoonacular.com/recipes/complexSearch?apiKey=${process.env.API_KEY}&query=lunch&number=16`)
+    axios.get(`https://api.spoonacular.com/recipes/random?apiKey=${process.env.API_KEY}&number=16`)
     .then(response=> {
-        let homeArray = response.data.results
+        let homeArray = response.data.recipes
         res.render('categories/lunch', {homeArray: homeArray})
         // console.log(req.session.passport.user)
     }).catch(function (error) {
@@ -42,9 +41,9 @@ router.get('/lunch', isLoggedIn, (req, res)=>{
 
 // get dinner recipes
 router.get('/dinner', isLoggedIn, (req, res)=>{
-    axios.get(`https://api.spoonacular.com/recipes/complexSearch?apiKey=${process.env.API_KEY}&query=dinner&number=16`)
+    axios.get(`https://api.spoonacular.com/recipes/random?apiKey=${process.env.API_KEY}&number=16`)
     .then(response=> {
-        let homeArray = response.data.results
+        let homeArray = response.data.recipes
         res.render('categories/dinner', {homeArray: homeArray})
         // console.log(req.session.passport.user)
     }).catch(function (error) {
