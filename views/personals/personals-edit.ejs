@@ -1,0 +1,30 @@
+<h3 class="cb-title">EDIT YOUR RECIPE</h2>
+<p style="text-align:center; margin-bottom: 30px; font-size: 20px; font-weight: 200;">Edit your own personal recipe to update to your cookbook!</p>
+
+<div class="new-recipe-div">
+  
+    <form method="POST" class="new-recipe" action="/personals/show/<%= personal.id %>/?_method=PUT">
+        <div style="margin-top:30px" class="form-group">
+            <label class="form-title" for="name">Recipe Title</label>
+            <input type="text" class="recipe-form" id="recipe-name" name="name" value="<%=personal.name%>" required>
+        </div>
+        <div class="form-group">
+            <label class="form-title" for="img_url">Link an Image Source</label>
+            <input type="text" class="recipe-form" id="recipe-img_url" name="img_url" value="<%=personal.img_url%>" required>
+        </div>
+        <div class="form-group">
+            <label class="form-title" for="ingredients">Ingredients</label>
+            <p style="text-align:center; font-size: 15px;">Fill in new ingredients below. <br><small>(*You <strong>MUST</strong> include a <strong>+</strong> sign on each new ingredient line! The first line does not need a <strong>+</strong> sign)</small></p>
+            <textarea type="text" class="ingredients-form" id="pers-ingredients" name="ingredients" value="<%=personal.ingredients %>" required></textarea>
+        </div>
+        <div class="form-group" id="instructions-div">
+            <label class="form-title" for="instructions">Instructions</label>
+            <p style="text-align:center; font-size: 15px;">Fill in new ingredients below. <br><small>(*You <strong>MUST</strong> include a <strong>+</strong> sign on each new instruction line! The first line does not need a <strong>+</strong> sign)</small></p>
+           
+            <textarea type="text" class="instructions-form" id="pers-instructions" name="instructions" value="<%=personal.instructions%>" required></textarea>
+        </div>
+        <input hidden type="text" name="id" value="<%=personal.id%>">
+        <input hidden type="text" name="userId" value="<%=user.id%>">
+        <input type="submit" class="new-recipe-btn" value="UPDATE RECIPE">
+    </form>
+</div>

@@ -5,6 +5,7 @@ const db = require('../models');
 router.use(express.urlencoded({extended: false}))
 const isLoggedIn = require('../middleware/isLoggedIn')
 var methodOverride = require('method-override');
+const fs = require('fs')
 
 router.use(methodOverride('_method'));
 

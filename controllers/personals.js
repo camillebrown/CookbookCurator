@@ -1,6 +1,5 @@
 const express = require('express')
 const router = express.Router()
-const axios = require("axios").default;
 const db = require('../models');
 router.use(express.urlencoded({extended: false}))
 const isLoggedIn = require('../middleware/isLoggedIn')
@@ -13,14 +12,17 @@ router.use(methodOverride('_method'));
 router.get('/', isLoggedIn, (req, res)=>{
     db.user.findOne({
         where: {id: req.session.passport.user},
-        include: [db.personal]
     }).then(user=>{
-        console.error('FOUND THE USER AND THEIR PERSONALS');
-        res.render('personals/personals-home', {personalRecipes: user.personals, user: req.user})
+        console.error('FOUND THE USER')
+        user.getPersonals()
+        .then(personals=>{
+            console.error('FOUND THE USER AND THEIR PERSONALS');
+            res.render('personals/personals-home', {personalRecipes: personals, user: req.user})
+        })
     }).catch(function (error) {
         console.error('GETTING AN ERROR WHEN TRYING TO GET THE USERS RECIPES!!!! ===>' + error);
     });
-})  
+})    
 
 // GET /personals - Get information about the personal with the corresponding id.
 // ----> PERSONALS: GET ROUTE <------
@@ -79,20 +81,34 @@ router.delete('/:id', isLoggedIn, (req, res)=>{
     })
 })  
 
-// // PUT /recipes/:id - update a comment and update the recipe/:id page
-// // ----> COMMENT: PUT ROUTE <------
-// router.put('/:id', isLoggedIn, (req, res) => {
-//     console.log('YOURE TRYING TO EDIT A COMMENT NOW');
-//     db.comment.update(
-//         { content: req.body.content },
-//         { where: { id: req.body.commentId }
-//     }).then(rowsUpdated => {
-//             console.log('I JUST UPDATED A COMMENT, DID YOU SEE IT?!??!???!' + rowsUpdated);
-//     }).catch((error) => {
-//             console.log('THIS IS AN ERROR WITH UPDATING THE COMMENT' + error)
-//     })
-//     res.redirect(`/recipes/${req.body.recipeId}`)
-// })  
+// PUT /recipes/:id - update a comment and update the recipe/:id page
+// ----> PERSONALS: PUT ROUTE <------
+router.put('/show/:id', isLoggedIn, (req, res) => {
+    console.log('YOURE TRYING TO EDIT A PERSONAL NOW');
+    db.personal.update({ 
+        name: req.body.name,
+        img_url: req.body.img_url,
+        ingredients: req.body.ingredients,
+        instructions: req.body.instructions,
+    },
+        { where: { id: req.body.id }
+    }).then(rowsUpdated => {
+            console.log('I JUST UPDATED A PERSONAL, DID YOU SEE IT?!??!???!' + rowsUpdated);
+    }).catch((error) => {
+            console.log('THIS IS AN ERROR WITH UPDATING THE PERSONAL' + error)
+    })
+    res.redirect(`/personals/show/${req.body.id}`)
+})  
+
+
+router.get('/edit/:id', isLoggedIn, (req, res) => {
+    console.log('YOUVE REQUESTED TO EDIT A PERSONAL !!');
+    db.personal.findOne({
+        where: {id: req.params.id}
+    }).then(foundPersonal=>{
+        res.render('personals/personals-edit', {personal: foundPersonal, user: req.user})
+    })
+})
 
 //GET Method /personals/new - Create a new personal recipe
 router.get('/new', isLoggedIn, (req, res)=>{
