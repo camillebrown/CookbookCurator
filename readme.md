@@ -81,12 +81,12 @@ https://lucid.app/invitations/accept/ec256862-8f53-4741-942a-eda1d9ef7ca1
 
 ### Original Wireframes
 
-![Home Page](home-page.png)\
-![Login Page](login.png)\
-![My Recipes Page](my-cookbook.png)\
-![New Recipe Page](new-recipe.png)\
-![Categories Page](categories.png)\
-![Recipe Detail Page](recipe-detail.png)
+![Home Page](images/home-page.png)\
+![Login Page](images/login.png)\
+![My Recipes Page](images/my-cookbook.png)\
+![New Recipe Page](images/new-recipe.png)\
+![Categories Page](images/categories.png)\
+![Recipe Detail Page](images/recipe-detail.png)
 
 ### Color Pallet:
 
