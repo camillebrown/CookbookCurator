@@ -68,7 +68,7 @@ router.post('/show/:id', isLoggedIn, (req, res) => {
 })    
 
 
-// DELETE /personals/:id - Delete comment from the database
+// DELETE /personals/:id - Delete personal from the database
 // ----> PERSONALS: DELETE ROUTE <------
 router.delete('/:id', isLoggedIn, (req, res)=>{
     console.log('YOURE TRYING TO DELETE A PERSONAL NOW');
@@ -81,7 +81,7 @@ router.delete('/:id', isLoggedIn, (req, res)=>{
     })
 })  
 
-// PUT /recipes/:id - update a comment and update the recipe/:id page
+// PUT /recipes/:id - update a personal and update the recipe/:id page
 // ----> PERSONALS: PUT ROUTE <------
 router.put('/show/:id', isLoggedIn, (req, res) => {
     console.log('YOURE TRYING TO EDIT A PERSONAL NOW');

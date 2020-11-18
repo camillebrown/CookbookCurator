@@ -60,7 +60,7 @@ router.post('/login', passport.authenticate('local', { // two parameters: what s
     failureRedirect: '/auth/login',
     successRedirect: '/',
     failureFlash: 'Invalid email or password!', // !-> FLASH <-!
-    successFlash: 'You are now logged in!' // !-> FLASH <-!
+    successFlash: 'Welcome back!' // !-> FLASH <-!
 }))
 
 router.get('/logout', (req, res)=>{
