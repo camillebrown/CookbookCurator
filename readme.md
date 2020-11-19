@@ -7,7 +7,9 @@
 npm i
 npm i bcrypt
 ```
-3. Create a `config.json` with the following code:
+3. Request a Spoonacular API key here: https://spoonacular.com/food-api/docs#Authentication
+
+4. Create a `config.json` with the following code:
 ```json
 {
   "development": {
@@ -29,18 +31,18 @@ npm i bcrypt
 ```
 **Note:** If your database requires a username and password, you'll need to include these fields as well.
 
-4. Create a database
+5. Create a database
 ```
 sequelize db:create <insert db name here>
 ```
 
-5. Migrate the `user` model to your database
+6. Migrate the `user` model to your database
 ```
 sequelize db:migrate
 ```
-6. Add a `SESSION_SECRET` and `PORT` environment variables in a `.env` file (can be any string)
+7. Add a `SESSION_SECRET` and `PORT` environment variables in a `.env` file (can be any string)
 
-7. Run `nodemon`
+8. Run `nodemon`
 
 
 ---
