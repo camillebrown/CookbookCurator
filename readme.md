@@ -40,7 +40,7 @@ sequelize db:create <insert db name here>
 ```
 sequelize db:migrate
 ```
-7. Add a `SESSION_SECRET` and `PORT` environment variables in a `.env` file (can be any string)
+7. Add `SESSION_SECRET`(can be any string), `PORT`, and `API_KEY` environment variables in a `.env` file 
 
 8. Run `nodemon`
 
