@@ -6,7 +6,7 @@ const session = require('express-session')
 const passport = require('./config/ppConfig.js')
 const flash = require('connect-flash') // MUST GO AFTER THE SESSION MIDDLEWARE
 const isLoggedIn = require('./middleware/isLoggedIn')
-app.use(express.static('public'))
+app.use(express.static(__dirname + '/public'))
 const axios = require("axios").default;
 const db = require('./models');
 
