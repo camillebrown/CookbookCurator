@@ -7,7 +7,7 @@
 npm i
 npm i bcrypt
 ```
-3. Request a Spoonacular API key here: https://spoonacular.com/food-api/docs#Authentication
+3. Request a free Spoonacular API key here: https://spoonacular.com/food-api/docs#Authentication
 
 4. Create a `config.json` with the following code:
 ```json
