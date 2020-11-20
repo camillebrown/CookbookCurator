@@ -15,6 +15,7 @@ router.get('/', isLoggedIn, (req, res)=>{
     let recipe = req.query.recipe
     axios.get(`https://api.spoonacular.com/recipes/complexSearch?apiKey=${process.env.API_KEY}&query=${recipe}&number=16&instructionsRequired=true&addRecipeInformation=true&addRecipeNutrition=true&sort=popularity&sortDirection=desc`)
     .then(response=> {
+        console.log(response.data.results)
         let recipeArray = response.data.results
         res.render('recipes/recipes', {recipeArray: recipeArray, recipe: recipe})
     }).catch(function (error) {

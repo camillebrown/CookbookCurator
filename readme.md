@@ -1,4 +1,5 @@
  # Cookbook Curator App
+ # Deployed Link: https://cookbook-curator.herokuapp.com/
 
 ## How to Set Up:
 1. Fork & Clone
